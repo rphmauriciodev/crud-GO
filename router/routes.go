@@ -1,34 +1,16 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/rphmauriciodev/crud-GO.git/handler"
 )
 
 func initializeRoutes(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/book", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"Title": "Book",
-				"Year":  "2024",
-				"Genre": "Drama",
-			})
-		})
-		v1.POST("/book", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"Title": "Book",
-				"Year":  "2024",
-				"Genre": "Drama",
-			})
-		})
-		v1.DELETE("/book", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"Title": "Book",
-				"Year":  "2024",
-				"Genre": "Drama",
-			})
-		})
+		v1.GET("/book", handler.GetBookHandler)
+		v1.POST("/book", handler.CreateBookHandler)
+		v1.PUT("/book", handler.UpdateBookHandler)
+		v1.DELETE("/book", handler.DeleteBookHandler)
 	}
 }
